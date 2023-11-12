@@ -1,41 +1,41 @@
 SWF translator
 --------------
 
-An attempt to emulate SWF in HTML5 environment. WebGL2 is required.
+Uma tentativa de emular SWF em um ambiente HTML5. WebGL2 é necessário.
 
-## Usage
+## Uso
 
-Requirement:
+Requisito:
 - NodeJS >= 12
 
-Build source code:
+Construir código-fonte:
 ```
 yarn install
 yarn build
 ```
 
-Translate SWF tags:
+Traduzir tags SWF:
 ```
-node packages/swf-translator/dist/index.js build-swf <path to swf> <output directory>
-```
-
-Translate AS3 source code:
-```
-node packages/swf-translator/dist/index.js build-as3 <AS3 source directory> <output directory>
+node packages/swf-translator/dist/index.js build-swf <caminho para swf> <diretório de saída>
 ```
 
-Assembly required to run the output, some hints:
-- Alias `swf-lib` in output source code to the compiled `swf-lib` package.
-- Bundle character definition JSON: `JSON.stringify` the variable `bundle` in character `index.js`.
-- Construct asset manifest:
+Traduzir código-fonte AS3:
+```
+node packages/swf-translator/dist/index.js build-as3 <diretório de origem AS3> <diretório de saída>
+```
+
+Montagem necessária para executar a saída, algumas dicas:
+- Alias ​​`swf-lib` no código-fonte de saída para o pacote `swf-lib` compilado.
+- Definição de caractere do pacote JSON: `JSON.stringify` a variável `bundle` no caractere `index.js`.
+- Construir manifesto de ativos:
   ```json5
   {
     "data": "data",
     "properties": {}, // embed properties.json
     "assets": {
       "data": {
-        "url": "./data.json", // path to bundled character definition JSON
-        "size": 0, // zero if no need of progress report
+        "url": "./data.json", // caminho para a definição de caracteres agrupados JSON
+        "size": 0, // zero se não houver necessidade de relatório de progresso
       },
       "character1": {
         "url": "./character1.png",
@@ -45,7 +45,7 @@ Assembly required to run the output, some hints:
     }
   }
   ```
-- Start the SWF:
+- Iniciar o SWF:
   ```js
   import lib from "swf-lib";
   const manifest = { /* ... */ };
@@ -55,9 +55,9 @@ Assembly required to run the output, some hints:
   document.body.appendChild(stage.__canvas.container);
   ```
 
-## Technical documentation
-- [Translator](./docs/translator.md)
+## Documentação técnica
+- [Tradutor](./docs/translator.md)
 - [Runtime](./docs/runtime.md)
 
-## License
+## Licença
 MIT
